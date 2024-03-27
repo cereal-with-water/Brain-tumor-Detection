@@ -23,7 +23,7 @@
 2. You need a dataset for training. Download the dataset and unzip the Brain Tumor Detection dataset from Kaggle.<br />https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection<br /><br />
 
 3. On the Image Classification page, create a class to label brains with and without tumors, upload images to that class, and let it train. <br /><br />
-![image](https://github.com/NoMoreError/5820-Final-Project/assets/113921954/5cd96cf1-58b3-491a-90f4-52f3f4bfa2e8)
+![image](https://github.com/NoMoreError/5820-Final-Project/assets/113921954/5cd96cf1-58b3-491a-90f4-52f3f4bfa2e8 = 250x250)
 ![image](https://github.com/NoMoreError/5820-Final-Project/assets/113921954/9e9bfc77-e988-432e-b73b-7c7e8e9b6c34)
 ![image](https://github.com/NoMoreError/5820-Final-Project/assets/113921954/9bde33e5-d88f-4055-8854-0fa4a09c43b7)
 
