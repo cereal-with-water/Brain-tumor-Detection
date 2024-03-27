@@ -17,7 +17,6 @@
 - streamlit
 
 ## Creating an Image Classifier Model
-~~We are allowed to use this tool right? still need to confirm thorugh him~~<br /><br /><br />
 1. Google Teachable Machine allows you to create projects with images as well as audio or poses In this case, we'll select "Images Project" as our image classification project.<br />https://teachablemachine.withgoogle.com/train<br /><br />
 
 2. You need a dataset for training. Download the dataset and unzip the Brain Tumor Detection dataset from Kaggle.<br />https://www.kaggle.com/datasets/navoneel/brain-mri-images-for-brain-tumor-detection<br /><br />
