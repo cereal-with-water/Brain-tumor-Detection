@@ -1,77 +1,81 @@
+# Imports
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
+from torch.nn import Module
+from torch.nn import Conv2d
+from torch.nn import Linear
+from torch.nn import MaxPool2d
+from torch.nn import ReLU
+from torch.nn import LogSoftmax
+from torch import flatten
 import torch.nn.functional as F
 from torchvision import datasets
 import torchvision.transforms as transforms
-from torchvision.io import read_image
 import os
+import time
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import confusion_matrix
+from PIL import Image
 
+#device config
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-import os
-import matplotlib.pyplot as plt
-from torchvision import datasets, transforms
+#read data
+data_dir = './data'
+sets = ['yes', 'no']
 
 # Define transformations to apply to the images
-transform = transforms.Compose([
+c_transform = transforms.Compose([
     transforms.Resize((224, 224)),  # Resize images to a consistent size
     transforms.ToTensor(),           # Convert images to PyTorch tensors
 ])
 
+
 # Load the dataset
-dataset_yes = datasets.ImageFolder(root=r'C:\Users\aytem\Desktop\testgit\5820-Final-Project\brain_tumor_dataset\yes',
-                                   transform=transform)
+dataset = {x: datasets.ImageFolder(root=r'C:/Users/aytem/Desktop/testgit/5820-Final-Project/data', transform= c_transform)
+           for x in sets
+}
 
-dataset_no = datasets.ImageFolder(root=r'C:\Users\aytem\Desktop\testgit\5820-Final-Project\brain_tumor_dataset\no',
-                                  transform=transform)
+dataloaders = {x: torch.utils.data.DataLoader(dataset[x], batch_size=6, shuffle=True) for x in sets}
 
-# Display a few images from the "yes" class
-fig, axes = plt.subplots(2, 5, figsize=(15, 6))
-for i, (image, _) in enumerate(dataset_yes):
-    if i >= 10:  # Display 10 images
-        break
-    ax = axes[i // 5, i % 5]
-    ax.imshow(image.permute(1, 2, 0))  # PyTorch tensors are (C, H, W), so we permute dimensions for display
+dataset_name = 'yes'
+data_loader = dataloaders[dataset_name]
+
+# Randomly select a batch from the data loader
+images, labels = next(iter(data_loader))
+
+# Print out the shape
+print(images[0].shape)
+
+
+class_labels = dataset[dataset_name].classes
+
+# Display the images
+fig, axes = plt.subplots(2, 3, figsize=(10, 7))
+
+for i, ax in enumerate(axes.flatten()):
+    image = images[i].permute(1, 2, 0)  # Change the tensor shape from (C, H, W) to (H, W, C)
+    label = labels[i].item()
+    class_name = class_labels[label]  # Get the class label name
+
+    #ax.imshow(image, cmap='gray')
+    ax.set_title(f"Label: {class_name}")
     ax.axis('off')
-    ax.set_title('Yes')
+
+plt.tight_layout()
 plt.show()
 
-# Display a few images from the "no" class
-fig, axes = plt.subplots(2, 5, figsize=(15, 6))
-for i, (image, _) in enumerate(dataset_no):
-    if i >= 10:  # Display 10 images
-        break
-    ax = axes[i // 5, i % 5]
-    ax.imshow(image.permute(1, 2, 0))  # PyTorch tensors are (C, H, W), so we permute dimensions for display
-    ax.axis('off')
-    ax.set_title('No')
-plt.show()
+
+num_epochs = 25
+learning_rate = 0.001
+num_classes = len(class_labels)
 
 
-print(os.listdir(r'C:\Users\aytem\Desktop\testgit\5820-Final-Project\brain_tumor_dataset\yes'))
-print(os.listdir(r'C:\Users\aytem\Desktop\testgit\5820-Final-Project\brain_tumor_dataset\no'))
-
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-# #reading data
-# data_dir = './data' 
-# sets = ['test', 'train', 'valid']
-
-# compared_transform = transforms.Compose([
-#     transforms.Grayscale(), 
-#     transforms.Resize((128, 128)), 
-#     transforms.ToTensor()
-#     ])
-
-# image_datasets = {
-#     x: datasets.ImageFolder(os.path.join(data_dir, x), transform=composed_transform)}
-# for x in sets
-# }
-
-# dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=6, shuffle = True)}
-    
+# create the model still working on this part
 
 # class CustomImageDataset(Dataset):
 #     def __init__(self, annotations_file, img_dir, transform=None, target_transform=None):
@@ -121,3 +125,8 @@ print(os.listdir(r'C:\Users\aytem\Desktop\testgit\5820-Final-Project\brain_tumor
 #         x = self.fc3(x)
 
 #         return x
+
+# train the model 
+# test the model
+
+
