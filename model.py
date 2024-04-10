@@ -272,5 +272,3 @@ print("Predicted Label:", predicted_label)
 
 # train the model 
 # test the model
-
-
