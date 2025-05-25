@@ -23,6 +23,11 @@ A utility function is used to display a sample of MRI images from each class.
 plot_sample_images(X, y, n=50)
 ```
 
+<p align="center">
+  <img src="Screenshots/f9.png" width="800" title="Tumor: Yes"/>
+  <img src="Screenshots/f10.png" width="800" title="Tumor: No"/>
+</p>
+
 Then the dataset is split into training and testing sets:
 
 ```python
@@ -74,6 +79,11 @@ plt.plot(traning_accuracy, label='Training Accuracy')
 plt.plot(val_accuracy, label='Validation Accuracy')
 ```
 
+<p align="center">
+  <img src="Screenshots/f11.png" width="500" title="Tumor: Yes"/>
+  <img src="Screenshots/f12.png" width="500" title="Tumor: No"/>
+</p>
+
 ### 🔍 Confusion Matrix
 Confusion matrix and normalized confusion matrix are plotted using matplotlib and seaborn:
 
@@ -81,6 +91,10 @@ Confusion matrix and normalized confusion matrix are plotted using matplotlib an
 confusion_matrix(y_true, y_predict)
 sn.heatmap(df_cm, annot=True, cmap="Blues")
 ```
+<p align="center">
+  <img src="Screenshots/f13.png" width="480" title="Tumor: Yes"/>
+  <img src="Screenshots/f14.png" width="525" title="Tumor: No"/>
+</p>
 
 ### 💯 Final Evaluation
 - **F1 Score**: 0.8632
