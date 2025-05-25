@@ -92,8 +92,8 @@ confusion_matrix(y_true, y_predict)
 sn.heatmap(df_cm, annot=True, cmap="Blues")
 ```
 <p align="center">
-  <img src="Screenshots/f13.png" width="480" title="Tumor: Yes"/>
-  <img src="Screenshots/f14.png" width="525" title="Tumor: No"/>
+  <img src="Screenshots/f13.png" width="500" title="Tumor: Yes"/>
+  <img src="Screenshots/f14.png" width="600" title="Tumor: No"/>
 </p>
 
 ### 💯 Final Evaluation
